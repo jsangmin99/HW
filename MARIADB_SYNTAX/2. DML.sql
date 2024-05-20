@@ -62,4 +62,50 @@ insert into post(id,title,contents,author_id) values (5,'제목555', '내용5555
 insert into post(id,title,contents) values (6,'제목6666', '내용6666' );
 
 -- update 테이블명 set 컬럼명 = 데이터 where id =1;
-update author set email = 'abc@test.com' where id =1;
+-- where 문을 빠뜨릴 경우 모든 데이터에 update 문이 실행되므로 주의하자!!!!!!!!1
+update author set name = 'abc',email = 'abc@test.com' where id =1;
+update author set email = 'abc2@naver.com' where id =2;
+
+-- delete from 테이블명 where 조건
+-- where d조건이 생략될 경우 모든 데이터가 삭제됨에 유의
+delete from author where id =5;
+-- 실무에서는 삭제를 잘 쓰지 않는다 대신에 삭제 여부 컬럼을 만들어 표시만 해둔다.
+
+--select의 다양한 조회방법
+select * from author;
+select * from author where id = 1;
+select * from author where id > 1;
+select * from author where id > 2 and name = 'hogildong';
+-- 특정 컬럼만을 조회활때
+select name, email from author where id = 1;
+
+
+-- 중복 조회하고 제거하기
+select title from post;
+select distinct title from post;
+
+-- 정렬 : order by 데이터의 출력 결과를 오름 차순으로 정렬
+-- 아무런 정렬 조건 없이 조회할 경우에는 PK기준을 오름차순정렬
+-- asc : 오름차순, desc: 내림차순
+-- 멀티 컬럼 order by : 여러 컬럼으로 정렬. 먼저 쓴 컬럼 우선정렬, 중복시 그다음 정렬 옵션 정렬
+select * from post order by title;
+select * from post order by title, id desc;
+
+--llimit number : 특정숫자로 결과값 개수 제한
+select * from author order by id desc llimit 1;
+
+-- alias 별칭을 이용한 Selsect : as 키워드를 사용
+select name as 이름 , email as 이메일 from author;
+select a.name, a.email from author as a;
+
+-- null을 도회 조건으로
+select * from post where author_id is null;
+select * from post where author_id is not null;
+
+--프로그해머스
+--여러기준으로 정렬하기
+select ANIMAL_ID,NAME, DATETIME
+from ANIMAL_INS
+order by NAME, DATETIME desc;
+-- 상위 N개 레코드
+
