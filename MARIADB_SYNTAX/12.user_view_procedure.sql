@@ -43,3 +43,45 @@ create replace view author_for_marketing_team as select name, email, age, role f
 
 --view 삭제
 DROP VIEW author_for_marketing_team;
+
+--프뢰시저 생성
+DELIMITER //
+CREATE PROCEDURE test_procedure()
+BEGIN
+    SELECT 'HELLO WORLD' ;
+END
+// DELIMITER ;
+
+--프로시저 호출
+call test_procedure();
+
+--게시글 목록 조회 프로시저 생성
+DELIMITER //
+CREATE PROCEDURE 유저목록조회()
+BEGIN
+    SELECT * from author;
+END
+// DELIMITER ;
+
+
+call 게시글목록조회();
+
+-- 게시글 단건조회
+DELIMITER //
+CREATE PROCEDURE 게시글단건조회(in 저자id int, in 제목 varchar(255))
+BEGIN
+    SELECT * from post where author_id = 저자id and title = 제목 ;
+END
+// DELIMITER ;
+
+call 게시글단건조회(3);
+
+-- 글쓰기 : title, contents, 저자ID
+DELIMITER //
+CREATE PROCEDURE 글쓰기(in 저자id int, in 제목 varchar(255), in 내용 varchar(255))
+BEGIN
+    INSERT INTO post(author_id, title, contents) values(저자id, 제목, 내용) ;
+END
+// DELIMITER ;
+
+call 글쓰기(4, '제목임당', '내용임당');
