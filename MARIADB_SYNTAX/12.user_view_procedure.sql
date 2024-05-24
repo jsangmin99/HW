@@ -85,3 +85,95 @@ END
 // DELIMITER ;
 
 call 글쓰기(4, '제목임당', '내용임당');
+
+--글쓰기 : title,contents,email
+DELIMITER //
+CREATE PROCEDURE 글쓰기2(in 저자id int, in 제목 varchar(255), in emailInput varchar(255))
+BEGIN
+    DECKARE authorId int ;
+    SELECT id into authorId FROM author WHERE email = emailInput;
+    INSERT INTO post(author_id, title, email) values(저자id, 제목, authorId) ;
+END
+// DELIMITER
+
+all 글쓰기('abc', '제목임당', '1');
+
+--sql에서 무자열을 합치는 방법 concat('hello', 'world') ;
+-- 글 상세 조회 : input 값이 postId
+-- title,contents, '홍길동' + '님'
+DELIMITER //
+CREATE PROCEDURE 글상세조회(IN postId int)
+BEGIN
+    select p.title, p.contents,CONCAT(a.name,'님') as 이름 from post p join author a on p.author_id = a.id where p.id = postId;
+
+END;
+//
+DELIMITER ;
+
+call 글상세조회(1);
+
+-- 등급 조회
+-- 출력 :  글을 100개 이상 쓴 사용자느 고수입니다. 
+-- 10개 이상 100개 미만이라면 중수 입니다.
+-- 그 외는 초보입니다.
+-- input 값 : email
+
+DELIMITER //
+CREATE PROCEDURE 등급조회(IN emailInput varchar(255))
+BEGIN
+    DECLARE post_count INT;
+
+    SELECT COUNT(p.id) INTO post_count
+    FROM post p
+    WHERE p.author_id IN (SELECT a.id FROM author a WHERE a.email = emailInput);
+    
+    SELECT CASE 
+        WHEN post_count >= 100 THEN "고수입니다."
+        WHEN post_count BETWEEN 10 AND 99 THEN '중수입니다.'
+        ELSE '초보입니다'
+        END AS 평가;
+END
+//
+DELIMITER ;
+
+--if문 방법
+DELIMITER //
+CREATE PROCEDURE 등급조회(IN emailInput varchar(255))
+BEGIN
+    DECLARE post_count INT;
+    DECLARE authorId INT;
+
+    select id into authorId from author where email= emailInput;
+    select COUNT(*) into post_count from post where author_id = authorId;
+    IF post_count >= 100 THEN
+        SELECT '고수입니다.';
+    ELSEIF post_count >=10 and post_count < 100 THEN
+        select '중수입니다.';
+    ELSE
+        select '초보입니다.';
+    END IF
+END
+//
+DELIMITER ;
+
+-- 반복을 통해 post 대량 생성
+--사용자가 입력한 반복 횟수에 따라 글이 도배되는데 title 은 '안녕하세요'
+DELIMITER //
+
+CREATE PROCEDURE 글도배(IN 횟수 INT)
+BEGIN
+    DECLARE a INT DEFAULT 0;
+    
+    WHILE a < 횟수 DO
+        INSERT INTO post(title,author_id) VALUES('안녕하세요', 1);
+        SET a = a + 1;
+    END WHILE;
+END //
+
+DELIMITER ;
+
+-- 프로시저 명으로 프로시저 찾기
+show create procedure 프로시저명;
+
+--프로시저 권한 부여
+grant excute on board.글도배 to 'test1'@'localhost';
