@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css basic</title>
+    <style>
+        p{
+            background-color:burlywood;
+            color: white;
+            /* text디자인 */
+            letter-spacing: 2px;
+            word-spacing: 5px;
+        }
+        #id1{
+            background-color: white; /* 원상복구 - white */
+            color: black;
+            /* 위에서 spacing한건 그대로 영향 받음 */
+        }
+        .italic{font-style: italic;}
+        .bigtext{font-size: 24px;}
+        .smalltext{font-size: 12px;}
+        #vwvh{
+            /* 높이에 대해 1% */
+            font-size: 3vh;
+            /* 너비에 대해 1% */
+            font-size: 3vw;
+        }
+    </style>
+</head>
+<body>
+    <h2>css 기본 문법</h2>
+    <p>요소 선택자 적용</p>
+    <p id="id1">id 선택자는 태그 선택자보다 우선하여 적용</p>
+
+    <p>중첩 클래스 선택자 적용</p>
+    <!-- 직접 태그를 만들 수 있음 -->
+    <p class="italic bigtext">클래스 선택자 적용 : font style과 font size 중첩 적용1</p>
+    <p class="italic smalltext">클래스 선택자 적용 : font style과 font size 중첩 적용2</p>
+
+    <p style="font-family:Georgia, 'Times New Roman', Times, serif;">font 형식 변경</p>
+
+    <!-- em : 부모 요소에 대해 배수, percent : 부모 요소에 대해 퍼센트 -->
+    <div style="font-size: 20px;">
+        여기는 부모 텍스트 임 ㅋ 
+        <div style="font-size: 1.5em;">이 텍스트는 부모 글꼴의 1.5배</div> <!-- 1.5em 비교대상 : 부모 텍스트 -->
+    </div>
+    <div style="font-size: 20px">
+        부모 텍스트 22 
+        <div style="font-size: 150%;">자식 텍스트 ㅎ </div>
+    </div>
+    <div id="vwvh">vw, vh를 적용한 글꼴 크기임</div> <!-- 화면 사이즈를 줄이면 %에 맞춰서 크기가 달라짐 (폭, 높이) -->
+    
+    <div style="border: 3px solid black; margin: auto; padding: 30px; text-align: center; place-content: center;"> 
+        margin, border, padding을 가진 요소 
+    </div>
+
+
+    <h2>🖇️ border, margin, padding</h2>
+    <table border="1" style="border-collapse: collapse; text-align: center; margin: auto; width: 500px;">
+        <thead>
+            <tr style="background-color: bisque;">
+                <th>row1row1</th>
+                <th>row2row2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>d1</td>
+                <td>d2</td>
+            </tr>
+            <tr>
+                <td>data3</td>
+                <td>data4</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

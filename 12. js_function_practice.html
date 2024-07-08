@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+
+    <script>
+        function cal() {
+            const method = document.getElementById("calculator").value;
+            const num1 = document.getElementById("first_num").value;
+            const num2 = document.getElementById("second_num").value; //꼭 value로 값을 꺼내줘야함
+        
+            let result;
+            if (method == "plus") {
+                result = Number(num1) + Number(num2);
+            } else if (method == "minus") {
+                result = Number(num1) - Number(num2);
+            } else if (method == "multiply") {
+                result = Number(num1) * Number(num2);
+            } else {
+                result = Number(num1) / Number(num2);
+            }
+            document.getElementById("result").innerHTML = result;
+        }
+    </script>
+</head>
+<body>
+    <div style="padding-top: 30px; margin-left: 30%;">
+        <h2>🔡 계산기 프로그램 구현</h2>
+        <div>
+            <!-- 사용자로부터 사칙연산 선택 -->
+            <label>⚙️ 사칙연산 선택</label>
+            <select id="calculator">
+                <option value="plus">덧셈</option>
+                <option value="minus">뺄샘</option>
+                <option value="multiply">곱셈</option>
+                <option value="divide">나눗셈</option>
+            </select>
+            <input type="text" id="first_num">
+            <input type="text" id="second_num">
+            
+            <button onclick="cal()">실행</button>
+        </div>
+        <div>💡&nbsp;결과 [&nbsp;<span id="result"></span>&nbsp;]</div>
+    </div>
+</body>
+</html>

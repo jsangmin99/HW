@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js callback</title>
+
+    <script>
+        function basicFunction() {
+            alert("hello world");
+        }
+        function callBackFunction1() {
+            userInput((a)=>{alert(a+"님 안녕하세요.")});
+        }
+        function callBackFunction2() {
+            const numbers = [1, 2, 3, 4, 5];
+            // 어떻게 생각하면 forEach라는 함수에 내용을 던진 것
+            // callback함수의 일종
+            numbers.forEach(a=>console.log(a));
+            // 기본적으로 javascript는 동기적으로 실행 ⭐⭐ 
+            console.log("hello world");
+        }
+        function callBackFunction3() { // 비동기 테스트
+            // setTimeOut 함수는 대표적인 js의 '비동기 함수' 중 하나 (+ 콜백함수 처리하는 함수)
+            // 콜백함수 처리함 = 콜백함수를 매개변수로 받는 함수
+            
+            // 2초 뒤에 콜백함수 실행해랏 
+            setTimeout(()=>console.log("hello world1"), 2000); // 2000ms
+            console.log("앙냥 ? 테스트 해볼게");
+            // 결과 : 앙냥이 먼저 출력되고 hello가 뜸 => hello 작업을 시작해놓고 앙냥 찍고 반환
+            // 대표적인 비동기 
+            setTimeout(()=>console.log("hello world2"), 2000); // 2000ms
+            console.log("앙냥 ? 테스트 해볼게2");
+        }
+        function userInput(callback) { // callback이 alert안녕하세요 함수임
+            const name = "hongildong";
+            callback(name);
+        }
+    </script>
+</head>
+<body>
+    <!-- 콜백함수 : 매개변수로 함수를 받는 함수 -->
+    <h2>콜백함수</h2>
+    <button onclick="basicFunction()">일반함수 예제1</button>
+    <button onclick="callBackFunction1()">콜백함수 예제1</button>
+    <button onclick="callBackFunction2()">콜백함수 예제2</button>
+    <button onclick="callBackFunction3()">콜백함수 예제3</button>
+</body>
+</html>

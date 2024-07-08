@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>callback 지옥</title>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+    <script>
+
+        async function callbackHell() {
+            async function test() {
+                const responst1 = await $.ajax({
+                    url: "https://jsonplaceholder.typicode.com/posts/1",
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (a) {
+                        console.log("a : " + a);
+                    },
+                    error: function () {
+                        console.log("error");
+                    }
+                })
+            }
+
+
+            const responst1 = await $.ajax({
+                url: "https://jsonplaceholder.typicode.com/posts/1",
+                type: 'GET',
+                dataType: 'json',
+                success: function (a) {
+                    console.log("a : " + a);
+                },
+                error: function () {
+                    console.log("error");
+                }
+            })
+            const responst2 = await $.ajax({
+                url: "https://jsonplaceholder.typicode.com/posts/1",
+                type: 'GET',
+                dataType: 'json',
+                success: function (b) {
+                    console.log("b : " + b);
+                },
+                error: function () {
+                    console.log("error");
+                }
+            })
+            const responst3 = await $.ajax({
+                url: "https://jsonplaceholder.typicode.com/posts/1",
+                type: 'GET',
+                dataType: 'json',
+                success: function (c) {
+                    console.log("c : " + c);
+                },
+                error: function () {
+                    console.log("error");
+                }
+            })
+            test();
+        }
+
+        callbackHell();
+        console.log("hello world"); 
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>json 직렬화 및 역직렬화 실습</title>
+</head>
+<body>
+    <h2>🏫 Student table</h2>
+    <table border="1" style="border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>age</th>
+                <th>score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="name"></td>
+                <td id="age"></td>
+                <td id="score"></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <table border="1" style="border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>age</th>
+                <th>score</th>
+            </tr>
+        </thead>
+        <tbody id="tby">
+        </tbody>
+    </table>
+
+    <script>
+        // 단일객체
+        const jsonTxt1 = '{"name":"Alice","age":25,"score":85}';
+        // 객체배열 
+        const jsonTxt2 = '[{"name":"Alice","age":25,"score":85},{"name":"Bob","age":28,"score":92},{"name":"Charlie","age":32,"score":88}]';
+        // json 역직렬화 (parsing)
+        const obj1 = JSON.parse(jsonTxt1);
+        const obj2 = JSON.parse(jsonTxt2); // json으로 변환 
+        
+        // 단일 객체일 때
+        document.getElementById("name").innerHTML = obj1.name;
+        document.getElementById("age").innerHTML = obj1.age;
+        document.getElementById("score").innerHTML = obj1.score;
+
+        // 테이블에 데이터 동적으로 넣기 
+        let target = document.getElementById("tby");
+        for (var i = 0; i < obj2.length; i++) {
+            target.innerHTML += `<tr><td>${obj2[i].name}</td><td>${obj2[i].age}</td><td>${obj2[i].score}</td></tr>`;
+        }
+
+
+        // json 직렬화
+        const jsonTxt3 = JSON.stringify(obj2); // [{"name":"Alice","age":25,"score":85},{"name":"Bob","age":28,"score":92},{"name":"Charlie","age":32,"score":88}]
+        console.log(jsonTxt3);
+
+    </script>
+    
+</body>
+</html>

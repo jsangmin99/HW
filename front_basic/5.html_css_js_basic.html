@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html css js 통합 기본</title>
+
+    <!-- css방법1 -->
+    <style>
+        /* 태그 선택 */
+        p {
+            color: gray;
+            text-decoration: underline;
+        }
+
+        /* 클래스 선택 */
+        .c1 {
+            color: blue;
+            text-decoration: underline;
+        }
+
+        /* ID 선택 */
+        #id1 {
+            color: red;
+            text-align: center;
+        }
+
+        #external1 {
+            color: red;
+        }
+
+        /* 자손 선택자 : 자손모두에게 영향 */
+        div p {
+            color: peru;
+        }
+
+        /* 자식 선택자 : 직계자식에게만 영향 */
+        div>h5 {
+            color: greenyellow;
+        }
+    </style>
+    <!-- css 방법2 -->
+    <link rel="stylesheet" href="css/mystyle.css">
+
+    <script>
+        // 자바스크립트 코드
+        document.getElementById("load2").innerHTML = "Change2"
+    </script>
+    <script>
+        function updateDemo1() {
+            document.getElementById("demo1").innerHTML = "변경 내용2"
+        }
+    </script>
+
+
+</head>
+
+<body>
+    <!-- css스타일 적용방법 3가지 -->
+    <!-- 인라인스타일 -->
+    <p style="color: green; text-align: center; text-decoration: underline;">인라인 스타일 적용</p>
+    <!-- 내부스타일 적용: 태그선택자, 클래스 선택자, id(유일) 선택자 -->
+    <p>태그선택자 적용</p>
+
+    <p class="c1">클래스 선택자 적용</p>
+    <p class="c1">클래스 선택자 적용</p>
+
+    <p id="id1">ID 선택자 적용</p>
+
+    <!-- 외부스타일 적용 -->
+    <h3 id="external1">외부스타일 적용</h3>
+
+    <!-- 자손선택자 -->
+    <div>
+        <h2>자손선택자 예시</h2>
+        <p>첫번째 단락</p>
+        <section>
+            <p>두번째 단락</p>
+        </section>
+    </div>
+    <!-- 자식선택자 -->
+    <div>
+        <h2>자식선택자 예시</h2>
+        <h5>첫번째 단락</h5>
+        <section>
+            <h5>두번째 단락</h5>
+        </section>
+    </div>
+
+    <h2>javascript예시</h2>
+    <p id="load1"> js 로드 순서1</p>
+    <p id="load2"> js 로드 순서2</p>
+
+    <p id="demo1"> 변경될 내용1</p>
+    <button onclick="updateDemo1()">내용변경1</button>
+    <p id="demo2"> 변경될 내용2</p>
+    <button onclick="updateDemo2()">내용변경2</button>
+    <p id = "demo3">변경될 내용3</p>
+    <script src="js/myjs.js"></script>
+
+    <script>
+        document.getElementById("load2").innerHTML = "Change2"
+        function updateDemo2() {
+            document.getElementById("demo2").innerHTML = "변경된 내용2"
+        }
+    </script>
+
+</body>
+
+</html>

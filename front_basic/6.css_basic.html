@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p {
+            background-color: tan;
+            color: gray;
+            /* 텍스트 디자인 */
+            letter-spacing: 2px;
+            word-spacing: 5px;
+        }
+
+        #id1 {
+            background-color: white;
+            color: red;
+            letter-spacing: 1px;
+            word-spacing: 20px;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .bigtext {
+            font-size: 24px;
+        }
+
+        .smalltext {
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>CSS 기본 문법</h2>
+    <p>요소 선택자 적용</p>
+    <p id="id1"> id 선택자는 요소 선택자보다 우선하여 적용</p>
+
+    <p>중첩 클래스 선택자 적용</p>
+    <p class="italic bigtext">클래스 선택자 적용 : font style과 font size 중첩적용1</p>
+    <p class="italic smalltext">클래스 선택자 적용 : font style과 font size 중첩적용1</p>
+
+
+</body>
+
+</html>

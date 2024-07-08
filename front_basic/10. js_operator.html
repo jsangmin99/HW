@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js operation</title>
+
+    <script>
+        function showBiggerNumber(a, b) {
+            // 삼항연산자
+            const bigger = a > b ? a : b;
+            document.getElementById("result").innerHTML = bigger;
+        }
+
+        function showComparism() {
+            let a = '3';
+            let b = '3';
+            console.log(a==b); // true
+            console.log(a===b); // true
+            
+            let x = 'abc';
+            let y = 'bcd';
+            console.log(x<y); // true
+        }
+
+    </script>
+</head>
+<body>
+    <h2>연산자 예시</h2>
+    <button onclick="showBiggerNumber(3, 4)">삼항 연산자 결과</button>
+    <button onclick="showComparism()">숫자, 문자비교 결과</button>
+    <p id="result">결과</p>
+    
+
+    <h2>void 연산자 활용</h2>
+    <!-- a태그를 link용도로 사용하지 않고, 다른 함수를 매핑하는 용도로 사용 -->
+    <!-- 즉, a태그인데 그 용도로 쓰지않고(그 용도는 void로 막아버리고), onclick으로 사용할 수 있음 -->
+    <a href="javascript:void(0)" onclick="alert('안녕하세요')">이 링크는 동작하지 않습니다.</a>
+
+
+</body>
+</html>

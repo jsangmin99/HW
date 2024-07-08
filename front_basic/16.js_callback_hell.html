@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>callback 지옥</title>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script>
+        function callbackHell() {
+            $(document).ready(function () { // ready가 '되면' 실행되기 때문에 '비 동 기'여야함
+                $.ajax({
+                    url: "https://jsonplaceholder.typicode.com/posts/1",
+                    type: 'GET',
+                    dataType: 'json', // json 데이터 형식으로 들어올것
+                    success: function (a) { // 이것도 '실행되면 이 함수가 호출'되기 때문에 콜백함수임
+                        console.log("a : " + a);
+                        $.ajax({
+                            url: "https://jsonplaceholder.typicode.com/posts/1",
+                            type: 'GET',
+                            dataType: 'json', // json 데이터 형식으로 들어올것
+                            success: function (b) { // 이것도 '실행되면 이 함수가 호출'되기 때문에 콜백함수임
+                                console.log("b : " + b);
+                                $.ajax({
+                                    url: "https://jsonplaceholder.typicode.com/posts/1",
+                                    type: 'GET',
+                                    dataType: 'json', // json 데이터 형식으로 들어올것
+                                    success: function (c) { // 이것도 '실행되면 이 함수가 호출'되기 때문에 콜백함수임
+                                        console.log("c : " + c);
+                                        $.ajax({
+
+                                        })
+                                    },
+                                    error: function () { // 성공하지 않으면 이 함수 실행 => 얘도 콜백 
+                                    }
+                                })
+                            },
+                            error: function () { // 성공하지 않으면 이 함수 실행 => 얘도 콜백 
+                            }
+                        })
+                    },
+                    error: function () { // 성공하지 않으면 이 함수 실행 => 얘도 콜백 
+                    }
+                })
+                console.log("hello world");
+            })
+            // 위 통째로 '비동기'임 => 그래서 hello world가 먼저 출력됨 
+            // 근데 위 묶음 내에선 '동기'로 움직임 ⭐⭐ 
+        }
+
+        callbackHell();
+        console.log("hello world"); 
+    </script>
+
+</body>
+
+</html>

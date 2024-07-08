@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 📁html basic</title>
+</head>
+<!-- <body style="background-color:antiquewhite;"> --> <!-- 색으로 배경 채우기 -->
+<!-- <body background="images/images.png"> --> <!--이미지로 배경 채우기-->
+<body>
+    <h2>✏️ 글자 스타일링 예제</h2>
+    <!-- 인라인 스타일링 -->
+    <p style="background-color:antiquewhite;">1. 배경색 변경</p>
+    <p style="color:blue;">2. 글자색 변경</p>
+    <p style="font-size: 20px;">3. 글자 사이즈 변경</p>
+    <p style="background-color:chocolate; font-size: 25px; text-align: center;">4. 복합 스타일링</p>
+
+    <h2>🖇️ 링크와 이미지 삽입 </h2>
+    <div>
+        <!-- _blank: 새탭으로 이동 -->
+        <a href="https://www.naver.com" target="_blank">네이버</a>
+    </div>
+    <div>
+        <a href="https://www.naver.com">
+            <!-- 이미지 '주소 복사'로 붙여넣기 -->
+            <!-- alt : 이미지가 깨졌을 때 대체 문자열, 시각 장애인용 reader기에서 인식 -->
+            <img src="https://gongu.copyright.or.kr/gongu/wrt/cmmn/wrtFileImageView.do?wrtSn=9046601&filePath=L2Rpc2sxL25ld2RhdGEvMjAxNC8yMS9DTFM2L2FzYWRhbFBob3RvXzI0MTRfMjAxNDA0MTY=&thumbAt=Y&thumbSe=b_tbumb&wrtTy=10004" 
+            width="330px" height="300px" style="border: 8px solid black;" alt="파럄하눌">
+        </a>
+    </div>
+
+    <h2>✔️ 리스트 (ol - 순서가 있는, ul - 순서가 없는 리스트) </h2>
+    <ol>
+        <li>item a</li>
+        <li>item b</li>
+        <li>item c</li>
+    </ol>
+    <ol style="list-style-type: upper-roman;">
+        <li>roman item a</li>
+        <li>roman item b</li>
+        <li>roman item c</li>
+    </ol>
+
+    <ul>
+        <li>item a</li>
+        <li>item b</li>
+        <li>item c</li>
+    </ul>
+    <ul style="list-style-type: square;">
+        <li>square item a</li>
+        <li>square item b</li>
+        <li>square item c</li>
+    </ul>
+
+
+    <h2>🖥️ 테이블 예제</h2>
+    <table border="1" style="border-collapse: collapse;">
+        <caption>테이블 명</caption>
+        <thead>
+            <tr>
+                <th>컬럼1</th> <!-- 가장 상단 th -->
+                <th>컬럼2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>내용1</td> <!-- 그 다음부턴 td -->
+                <td>내용2</td>
+            </tr>
+            <tr>
+                <td>내용3</td>
+                <td>내용4</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 테이블 만들기 실습 -->
+    <!-- 테이블 명은 post : id, title, contents, author_email 요소오ㅏ 데이터를 가진 테이블 생성-->
+    <h2>🗒️ Post </h2>
+    <table border="1" style="border-collapse: collapse;">
+        <caption>[ post table ]</caption>
+        <thead>
+            <tr style="background-color: bisque;">
+                <th>id</th>
+                <th>title</th>
+                <th>contents</th>
+                <th>author email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>제목1임</td>
+                <td>내용1임</td>
+                <td>yeji@test.com</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>제목2임</td>
+                <td>내용2임</td>
+                <td>yeji2@test.com</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>제목3임</td>
+                <td>내용3임</td>
+                <td>yeji33@test.com</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>제목4임</td>
+                <td>내용4임</td>
+                <td>yeji444@test.com</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css적용하기</title>
+    <style>
+        /* 태그 선택 */
+        p{
+            color:green; 
+            text-decoration: underline;
+        }
+        /* 클래스 선택 */
+        .c1{
+            color: red;
+            /* 아래 아무것도 없으면 underline이 그대로 나타남. overline으로 덮어쓰기 */
+            text-decoration: overline;
+        }
+        /* ID 선택 */
+        #id1{
+            color:blanchedalmond;
+        }
+        /* 위에서부터 하나씩 내려오기 때문에, red가 먼저 -> 그다음 link rel이 적용되어 결과적으로 pink가 나타남 */
+        #external{ 
+            color: red;
+        }
+        /* 자손 선택자 : 자손 모두에게 영향 */
+        div p{
+            color: yellow; /* div 밑에 p가 모두 yellow로 바뀜 -> section 안에 p도 div내이므로 바뀜 */
+        }
+
+        /* 자식 선택자 : 직계 자식에게만 영향 */
+        div > h5{
+            color: green; /* 직계 자식에게만 영향 -> section 아래의 h5에는 영향을 주지 않음 */
+        }
+        
+    </style>
+    <script> /* load1은 안바뀜 -> 위부터 실행하는데 이 시점에는 load1이 없음 */
+        document.getElementById("load1").innerHTML="change1"
+
+        function updateDemo1() {
+            document.getElementById("demo1").innerHTML="demo1이 변경되었습니다."
+        }
+    </script>
+    
+    <link rel="stylesheet" href="css/mystyle.css">
+</head>
+<body>
+    <!-- css 스타일 적용방법 3가지-->
+    <!-- 인라인 스타일 -->
+    <!-- text-decoration: underline -> 아래 밑줄 -->
+    <p style="color:blue; text-align: center; text-decoration: underline;">인라인 스타일 적용</p>
+
+    <!-- 내부 스타일 적용 : 태그 선택자, 클래스 선택자, id(유일) 선택자-->
+    <p>태그 선택자 적용</p>
+
+    <p class="c1">클래스 선택자 적용</p>
+    <p class="c1">클래스 선택자 적용</p>
+
+    <p id="id1">ID 선택자 적용</p>
+    
+    <!-- 외부 스타일 적용 -->
+    <h3 id="external">외부 스타일 적용</h3>
+
+    <!-- 자손 선택자 -->
+    <div>
+        <h2>자손 선택자 예시</h2>
+        <p>첫번째 단락</p>
+        <section><p>두번째 단락</p></section>
+    </div>
+    <!-- 자식 선택자 -->
+    <div>
+        <h2>자식 선택자 예시</h2>
+        <h5>첫번째 단락</h5>
+        <section><h5>두번째 단락</h5></section>
+
+    </div>
+
+    <h2>javascript 예시</h2>
+    <p id="load1">js 로드 순서 1</p>
+    <p id="load2">js 로드 순서 2</p>
+    <script> /* 위부터 실행할 때 이 script가 실행되는 시점에 load2가 있으므로 change2로 바뀜 */
+        document.getElementById("load2").innerHTML="change2"
+    </script>
+
+    <!-- function은 다 됨 -->
+    <p id="demo1"> 변경될 내용 1</p>
+    <button onclick="updateDemo1()">내용 변경1</button> <!-- 함수 사용 -->
+    <p id="demo2"> 변경될 내용 2</p>
+    <button onclick="updateDemo2()">내용 변경2</button>
+
+    <p id="demo3"> 변경될 내용 3</p> <!-- js파일 가져와 사용하기 > 바로 아래 js scipt 사용할 수 있음 -->
+    <script src="js/myjs.js"></script>
+    <!-- <button onclick="updateDemo3()">내용 변경3</button> -->
+
+    <script>
+        function updateDemo2() {
+            document.getElementById("demo2").innerHTML="demo2가 변경되었습니다."
+        }
+    </script>
+
+</body>
+</html>

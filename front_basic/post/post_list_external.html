@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Service</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <object data="/front_basic/common/header.html" type="text/html" style="width:100%"></object>
+
+    <!-- container : 부트스트랩의 컨테이너 클래스는 페이지의 내용을
+    중앙에 정렬하고 양쪽에 패딩을 추가하고 내용을 감싸는 역할-->
+    <div class="container" style="text-align: center; padding-top: 30px;">
+        <div class="page-header">
+            <h3>✏️게시글 목록</h3>
+        </div>
+        <div class="float-end"><button class="btn btn-secondary">글쓰기</button></div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>title</th>
+                    <th>contents</th>
+                    <th>userId</th>
+                </tr>
+            </thead>
+            <tbody id="list">
+                <!-- <tr>
+                    <td>1</td>
+                    <td>hello1</td>
+                    <td>hello1...</td>
+                    <td>user1</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>hello2</td>
+                    <td>hello2...</td>
+                    <td>user2</td>
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        async function fetchPosts() {
+            try {
+                const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+                const posts = response.data;
+
+                const listElement = document.getElementById('list');
+
+                // posts.forEach(post => {
+                //     const row = document.createElement('tr');
+                //     row.innerHTML = `
+                //         <td>${post.id}</td>
+                //         <td>${post.title}</td>
+                //         <td>${post.body}</td>
+                //         <td>${post.userId}</td>
+                //     `;
+                //     listElement.appendChild(row);
+                // });
+
+                for (let i = 0; i < posts.length; i++) {
+                    const userId = posts[i].userId;
+                    const id = posts[i].id;
+                    const title = posts[i].title;
+                    const body = posts[i].body;
+
+                    listElement.innerHTML += `
+                    <tr>    
+                        <td>${userId}</td>
+                        <td>${id}</td>
+                        <td>${title}</td>
+                        <td>${body}</td>
+                    </tr>`
+                        ;
+                }
+
+
+            } catch (error) {
+                console.error('Error fetching posts:', error);
+                alert('Failed to fetch posts. Please try again.');
+            }
+        }
+
+        fetchPosts();
+    </script>
+</body>
+
+</html>

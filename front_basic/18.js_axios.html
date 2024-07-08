@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js axios</title>
+
+</head>
+
+<body>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        async function postApi() {
+            const response1 = await axios.get('https://jsonplaceholder.typicode.com/posts/1');
+            // axios를 통한 데이터 호출시 .data 해줘야 함에 유의
+            console.log(response1.data);
+        }
+        async function postApi2() {
+            try {
+                const response2 = await axios.get('https://jsonplaceholder.typicode.com/posts');
+                const arr = response2.data;
+                arr.forEach(element => {
+                    console.log(`UserId : ${element.userId}`);
+                    console.log(`Id : ${element.id}`);
+                    console.log(`Title : ${element.title}`);
+                    console.log(`contenst : ${element.body}`);
+                });
+                console.log(response2.data.id);
+            }
+            catch (e) {
+                console.log(e);
+            }
+
+        }
+        postApi();
+        postApi2();
+
+    </script>
+
+</body>
+
+</html>

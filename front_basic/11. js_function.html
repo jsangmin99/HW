@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js function</title>
+
+    <script>
+        function basicFunction() {
+            alert("hello world");
+        }
+        const variableFunction1 = function() {
+            console.log("hello world variableFunction");
+        }
+        const variableFunction2 = ()=> {
+            console.log("화살표 사용");
+        }
+        const makeString1 = ()=> {return "hello world"}; //return 가능 
+        const makeString2 = ()=> "hello world2";
+
+        function returnFunction1() {
+            console.log(makeString1());
+            console.log(makeString2());
+        }
+
+        function paramFunction1(a, b) {
+            let total = a + b;
+            console.log(total); // 1yeji
+        }
+
+        function paramFunction2(name="여기쓰면 default값임") { // 매개변수에 값을 안넣으면 undefined가 출력됨            
+            console.log(name);
+        }
+        function paramFunction3(...numbers) {
+            let total_let = 0;
+            for (var i = 0; i < numbers.length; i++) {
+                total_let += numbers[i];
+            }
+
+            const total = numbers.reduce((a, b)=>a+b, 0);
+            console.log(total);
+        }
+
+        function functionWithException() {
+            // case1: 없는 함수 실행 또는 없는 변수값 참조시 예외 발생
+            try {
+                const result = example();
+                console.log(result); // 없는 함수 호출 
+            } catch(e) {
+                console.log(e);
+                console.log(e.message);
+            }
+            console.log("이후 코드 실행 잘 실행되니??");
+
+            // case2: 서버요청 이후 없는 데이터값 참조시 예외 발생 
+            //const response = axios.get('https://naver.com');
+            const response = {data1:{id:1, name:"kim"}};
+            console.log(response);
+            console.log(response.data1.id); // 객체 참조해서 id 가져오기 
+        }
+
+        function showPerson() {
+            const newPerson = createPerson("yeji", 27);
+            // console.log("이름은 " + newPerson.name + "이고, 나이는 " + newPerson.age + "임");
+
+            console.log(newPerson.printPerson()); // 이름은 yeji이고, 나이는 27임
+
+            // this를 붙이면 홍길동이 출력되고, 그렇지 않으면 yeji 출력 
+            newPerson.name = "홍길동";
+            console.log(newPerson.printPerson()); // 이름은 홍길동이고, 나이는 27임
+        }
+
+        function createPerson(name, age) {
+            const person = {name: name, age: age, 
+                printPerson:function(){return "이름은 " + this.name + "이고, 나이는 " + this.age + "임"}}; 
+            return person;
+            // 단축속성 사용 > return {name, age};도 가능 
+        }
+
+        function reload() { // 화면 깜빡깜빡 (새로고침)
+            window.location.reload(); //window안에 location안에 reload라는 객체가 있음
+        }
+        function locationMove() { // 네이버 ㄱㄱ 
+            window.location.href = "https://www.naver.com";
+        }
+
+        function clickEvent() {
+            const button = document.getElementById("button1");
+            if (button) { // 버튼 있으면
+                // click이라는 약속된 문자열을 동작의 트리거로 사용
+                // 해당 버튼이 클릭될 때 매개변수로 주어지는 함수가 실행됨 
+                button.addEventListener('click', ()=>alert("hello world")); // 이 버튼이 클릭이 되면 -를 하겠다
+            }
+        }
+        function scrollEvent() { // 스크롤 내리면 hellow ㅎ 출력숫자 늘어남 
+            window.addEventListener('scroll', ()=>console.log("hellow ㅎ"));
+        }
+        
+        function addItem() {
+            let myTarget = document.getElementById("target");
+            myTarget.innerHTML += "<input type=text><br>"; // input 박스 태그를 더해줌 
+        }
+        
+    </script>
+</head>
+<body>
+    <h2>js 기본 함수 호출</h2>
+    <button onclick="basicFunction()">함수 호출 basic</button>
+    <button onclick="variableFunction1()">변수 함수 호출 basic1</button>
+    <button onclick="variableFunction2()">변수 함수 호출 basic2</button>
+    <button onclick="returnFunction1()">리턴 함수 호출 1</button>
+    <button onclick="paramFunction1(1, 'yeji')">매개 변수 있는 함수 호출1</button>    
+    <button onclick="paramFunction2('홍길동')">매개 변수 있는 함수 호출2</button>    
+    <button onclick="paramFunction3(1,2,3,4)">매개 변수 있는 함수 호출3</button>    
+    <button onclick="paramFunction3(1, 2, 3, 4, 5, 6)">매개 변수 있는 함수 호출3</button>    
+
+
+    <h2>예외처리 예제</h2>
+    <button onclick="functionWithException()">예외처리 함수 호출</button>
+
+    <h2>객체에 있는 함수 호출 예제</h2>
+    <button onclick="showPerson()">사람 객체 생성</button>
+
+    <h2>window 객체 활용</h2>
+    <button onclick="reload()">화면 새로고침</button>
+    <button onclick="locationMove()">화면 이동</button>
+
+    <h2>event 리스너 활용</h2>
+    <button onclick="clickEvent()">클릭시 이벤트 리스너 동작</button>
+    <button id="button1">먕</button>
+    <button onclick="scrollEvent()">스크롤시 이벤트 리스너 동작</button>
+
+    <h2>html 요소 동적으로 생성</h2>
+    <button onclick="addItem()">항목 추가</button>
+    <div id="target"></div>
+</body>
+</html>

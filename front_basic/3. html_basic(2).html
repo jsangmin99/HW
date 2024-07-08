@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM 태그</title>
+</head>
+<body>
+    <h2> 🖇️회원가입 form 예제 </h2>
+    <!-- 제출할 서버의 url 주소를 action에 입력 -->
+    <!-- 기본(text)인코딩 형식 : application/x-www-form-urlencoded -->
+    <!-- form에 파일까지 포함하는 경우 : multipart/form-data -->
+    <form action="https://www.naver.com" method="post" enctype="multipart/form-data">
+        <div>
+            <!-- label의 for는 input의 id를 찾아 매핑됨 -->
+            <label for="userName">이름</label>
+            <!-- input의 name 속성은 필수이고, 
+                이 속성은 폼 데이터가 서버로 전송될 때 각 데이터의 항목을 식별하는데 사용 -->
+            <input type="text" id="userName" name="name" size="5" maxlength="10">
+        </div>
+        <div>
+            <label for="userEmail">이메일</label>
+            <input type="email" id="userEmail" name="email" size="10" maxlength="20">
+        </div>
+        <div> 
+            <label for="usePwd">비밀번호</label> 
+            <input type="password" id="usePwd" name="password" size="10" maxlength="20"> 
+        </div>
+        <div> 
+            <label for="userAddress">주소</label> 
+            <!-- value : 초기값 깔아줌, readonly : 읽기전용 (수정은 못하지만 서버로 전송은 됨), disable : 수정도 못하고 서버로 전송도 안됨 -->
+            <input type="text" id="userAddress" name="address" size="20" maxlength="30" value="서울시 동작구 신대방동" readonly> 
+        </div>
+        <div> 
+            <label for="gender">성별</label> 
+            <input type="radio" id="gender" name="gender" value="male" checked>남성 
+            <input type="radio" id="gender" name="gender" value="female">여성 
+        </div>
+        <div> 
+            <label for="interest">관심분야 선택</label> 
+            <input type="radio" id="interest" name="interest" value="sports" checked>스포츠 
+            <input type="radio" id="interest" name="interest" value="music">음악
+            <input type="radio" id="interest" name="interest" value="book">독서
+        </div>
+        <div>
+            <label for="birthday">생년월일</label>
+            <input type="datetime-local" id="birthday" name="birthday">
+        </div>
+        <div>
+            <label="age">나이</label>
+            <input type="number" name="age">
+        </div>
+        <div>
+            <label for="userType">유저선택</label>
+            <select id="userType" name="userinfo">
+                <option value="admin">관리자</option>
+                <option value="user">일반유저</option>
+                <option value="guest">방문자</option>
+            </select>
+        </div>
+        <div>
+            <label for="color">좋아하는 색깔</label>
+            <input type="color" name="color">
+        </div>
+        <div>
+            <!-- <form action="https://www.naver.com" method="post" enctype="multipart/form-data"></form> -->
+            <!-- 이 부분때문에 multipart/form-data로 한 것 -->
+            <label for="image">증명사진</label>
+            <input type="file" name="image" id="image" accept="image/*">  <!-- 이미지 파일만 받도록 accpet -->
+        </div>
+        <div>
+            <label for="resume">자기소개</label><br>
+            <textarea name="resume" id="resume" rows="6" cols="50" placeholder="글을 작성하세요."></textarea>
+        </div>
+        <!-- input, button 둘 다 submit으로 같은 기능을 하지만, button 태그에 디자인적 다양성이 있음 (둘다 많이 사용)-->
+        <div><input type="submit" value="submit"></div>
+        <button type="submit">SUBMIT</button>
+    </form>
+</body>
+</html>
